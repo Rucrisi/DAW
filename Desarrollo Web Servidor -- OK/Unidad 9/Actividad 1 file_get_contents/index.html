@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imágenes de Ciudades</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Imágenes de Ciudades</h1>
+    <p>Ingresa coordenadas para obtener imágenes cercanas:</p>
+
+    <form method="POST" action="request.php">
+        <input type="text" name="latitud" placeholder="Latitud" required>
+        <input type="text" name="longitud" placeholder="Longitud" required>
+        <button type="submit">Buscar</button>
+    </form>
+</body>
+</html>

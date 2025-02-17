@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validación de Formulario</title>
+    <script>
+        function validarFormulario() {
+            let nombre = document.getElementById("nombre").value.trim();
+            let apellidos = document.getElementById("apellidos").value.trim();
+            let mensaje = document.getElementById("mensaje");
+
+            if (nombre === "" || apellidos === "") {
+                mensaje.textContent = "Todos los campos son obligatorios.";
+                mensaje.style.color = "red";
+                return false; // Evita el envío del formulario
+            }
+
+            return true; // Permite el envío
+        }
+    </script>
+</head>
+<body>
+    <h2>Formulario de Registro</h2>
+    <form action="procesar.php" method="post" onsubmit="return validarFormulario();">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre"><br><br>
+
+        <label for="apellidos">Apellidos:</label>
+        <input type="text" id="apellidos" name="apellidos"><br><br>
+
+        <button type="submit">Enviar</button>
+    </form>
+    <p id="mensaje"></p>
+</body>
+</html>

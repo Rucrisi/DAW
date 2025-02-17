@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Blog de Nuestra Empresa</title>
+        <link>https://www.empresa.com/blog</link>
+        <description>Últimas noticias y artículos de interés sobre nuestra empresa.</description>
+        <language>es-ES</language>
+        <atom:link href="https://www.empresa.com/rss.xml" rel="self" type="application/rss+xml" />
+        <lastBuildDate>Wed, 31 Jan 2025 12:00:00 +0000</lastBuildDate>
+
+        <item>
+            <title>Nuevo Lanzamiento: Plataforma de Gestión Empresarial</title>
+            <link>https://www.empresa.com/blog/nuevo-lanzamiento</link>
+            <guid isPermaLink="true">https://www.empresa.com/blog/nuevo-lanzamiento</guid>
+            <description>Presentamos nuestra nueva plataforma de gestión empresarial que optimiza los procesos internos.</description>
+            <pubDate>Wed, 31 Jan 2025 10:00:00 +0000</pubDate>
+        </item>
+
+        <item>
+            <title>Cómo Mejorar la Productividad con Herramientas Digitales</title>
+            <link>https://www.empresa.com/blog/productividad-herramientas-digitales</link>
+            <guid isPermaLink="true">https://www.empresa.com/blog/productividad-herramientas-digitales</guid>
+            <description>Descubre las mejores herramientas digitales para mejorar la productividad en el trabajo.</description>
+            <pubDate>Tue, 30 Jan 2025 15:30:00 +0000</pubDate>
+        </item>
+
+        <item>
+            <title>Casos de Éxito: Empresas que han Crecido con Nuestra Solución</title>
+            <link>https://www.empresa.com/blog/casos-de-exito</link>
+            <guid isPermaLink="true">https://www.empresa.com/blog/casos-de-exito</guid>
+            <description>Conoce cómo diferentes empresas han aprovechado nuestras soluciones para crecer y mejorar su eficiencia.</description>
+            <pubDate>Sat, 27 Jan 2025 08:15:00 +0000</pubDate>
+        </item>
+    </channel>
+</rss>

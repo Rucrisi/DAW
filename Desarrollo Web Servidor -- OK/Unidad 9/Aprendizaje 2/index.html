@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Ciudades - Wikipedia API</title>
+    <script>
+        function buscarCiudad() {
+            let ciudad = document.getElementById("ciudad").value.trim();
+            let resultado = document.getElementById("resultado");
+
+            if (ciudad === "") {
+                resultado.innerHTML = "<p style='color: red;'>Por favor, ingresa una ciudad.</p>";
+                return;
+            }
+
+            let url = `https://es.wikipedia.org/api/rest_v1/page/summary/${(ciudad)}`;
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("GET", url, true);
+
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    let data = JSON.parse(xhr.responseText);
+                    mostrarInformacion(data);
+                } else {
+                    resultado.innerHTML = "<p style='color: red;'>No se encontró información.</p>";
+                }
+            };
+
+            xhr.onerror = function () {
+                resultado.innerHTML = "<p style='color: red;'>Error en la conexión.</p>";
+            };
+
+            xhr.send();
+        }
+
+        function mostrarInformacion(data) {
+            let resultado = document.getElementById("resultado");
+
+            if (data.type === "standard") {
+                resultado.innerHTML = `
+                    <h2>${data.title}</h2>
+                    <p>${data.extract}</p>
+                    ${data.thumbnail ? `<img src="${data.thumbnail.source}" alt="Imagen de ${data.title}" width="300">` : ""}
+                    <p><a href="${data.content_urls.desktop.page}" target="_blank">Más información en Wikipedia</a></p>
+                `;
+            } else {
+                resultado.innerHTML = "<p style='color: red;'>No se encontró información sobre esta ciudad.</p>";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Consulta de Ciudades</h1>
+    <label for="ciudad">Nombre de la ciudad:</label>
+    <input type="text" id="ciudad">
+    <button onclick="buscarCiudad()">Buscar</button>
+    <div id="resultado"></div>
+</body>
+</html>

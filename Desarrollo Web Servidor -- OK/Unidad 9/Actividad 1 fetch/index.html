@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imágenes de Ciudades - MediaWiki API</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="functions.js"></script>
+</head>
+<body>
+    <h1>Imágenes de Ciudades</h1>
+    <p>Ingresa coordenadas para obtener imágenes cercanas:</p>
+    <input type="text" id="latitud" placeholder="Latitud">
+    <input type="text" id="longitud" placeholder="Longitud">
+    <button onclick="buscarImagenes()">Buscar</button>
+    <p id="mensaje"></p>
+    <div id="imagenes"></div>
+</body>
+</html>
