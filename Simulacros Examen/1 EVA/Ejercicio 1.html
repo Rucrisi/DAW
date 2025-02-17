@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensaje de saludo</title>
+    <style>
+        .mensaje {
+        color: red;
+        text-align: center;
+        font-size: 30px;
+        }
+        </style>
+</head>
+<body>
+
+    <p id="mensaje" class="mensaje"></p>
+
+    <script>
+
+        const nombre = prompt("Por favor, ingresa tu nombre:");
+
+        if (nombre) {
+            document.getElementById("mensaje").innerHTML = "Bienvenido " + nombre + "!!!!";
+        } else {
+            document.getElementById("mensaje").innerHTML = "Por favor introduce un nombre.";
+        }
+
+    </script>
+
+</body>
+</html>

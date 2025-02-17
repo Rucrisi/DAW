@@ -1,0 +1,13 @@
+<?php
+// Verificar si se ha enviado la petición POST
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $nombre = $_POST['nombre'];
+    echo "Hola, . $nombre” ;
+}
+?>
+<!-- Formulario que envía datos mediante POST -->
+<form method="POST" action="">
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre">
+    <input type="submit" value="Enviar">
+</form>

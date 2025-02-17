@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encuesta</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <h1>Encuesta</h1>
+    <form id="encuestaForm" aria-describedby="successMessage">
+        <!-- Nombre -->
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required>
+        <div id="errorNombre" class="error" aria-live="polite"></div>
+        <br>
+
+        <!-- Edad -->
+        <label for="edad">Edad:</label>
+        <input type="number" id="edad" name="edad" min="1" required>
+        <div id="errorEdad" class="error" aria-live="polite"></div>
+        <br>
+
+        <!-- Género -->
+        <fieldset>
+            <legend>Género:</legend>
+            <label>
+                <input type="radio" name="genero" value="masculino" required> Masculino
+            </label>
+            <label>
+                <input type="radio" name="genero" value="femenino"> Femenino
+            </label>
+            <label>
+                <input type="radio" name="genero" value="otro"> Otro
+            </label>
+        </fieldset>
+        <div id="errorGenero" class="error" aria-live="polite"></div>
+        <br>
+
+        <!-- Comentarios -->
+        <label for="comentarios">Comentarios:</label>
+        <textarea id="comentarios" name="comentarios" rows="4" required></textarea>
+        <div id="errorComentarios" class="error" aria-live="polite"></div>
+        <br>
+
+        <!-- Botón de envío -->
+        <button type="submit">Enviar</button>
+        <div id="successMessage" class="success" aria-live="polite" style="display: none;">¡Gracias por completar la encuesta!</div>
+    </form>
+
+    <script src="script.js"></script>
+</body>
+</html>

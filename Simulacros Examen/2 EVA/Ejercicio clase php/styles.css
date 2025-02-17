@@ -1,0 +1,81 @@
+body {
+    font-family: system-ui; /* Usar la fuente predeterminada del sistema */
+    display: flex; /* Usar diseño flexible (Flexbox) */
+    justify-content: center; /* Centrar elementos horizontalmente */
+    align-items: center; /* Centrar elementos verticalmente */
+    height: 100vh; /* Altura del 100% de la ventana del navegador */
+    margin: 0; /* Eliminar márgenes predeterminados */
+    background-color: #f8f8f8; /* Establecer color de fondo gris claro */
+}
+
+.calculadora {
+    display: flex; /* Usar diseño flexible (Flexbox) */
+    flex-direction: column; /* Organizar los elementos en columna */
+    align-items: center; /* Centrar los elementos dentro del contenedor */
+    background-color: hsl(0, 1%, 47%); /* Establecer color de fondo gris oscuro */
+    padding: 20px; /* Espaciado interno de 20px alrededor del contenido */
+    border-radius: 10px; /* Bordes redondeados con radio de 10px */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Sombra suave alrededor del contenedor */
+}
+
+#output {
+    width: 220px;
+    height: 50px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: right;
+    margin-bottom: 10px;
+    font-size: 40px;
+    border-radius: 5px;
+}
+
+.botones {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding: 5px;
+}
+
+button {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    border: none;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background-color: #ccc;
+}
+
+button[type="submit"] {
+    background-color: hsl(145, 47%, 53%);
+    color: white;
+}
+
+button[type="submit"]:hover {
+    background-color: #27ae60;
+}
+
+#reset {
+    background-color: hsl(29, 93%, 48%);
+    color: white;
+}
+
+#reset:hover {
+    background-color: hwb(32 22% 22%);
+}
+
+
+button[type="button"]:last-child {
+    background-color: #e74c3c;
+    color: white;
+}
+
+button[type="button"]:last-child:hover {
+    background-color: #c0392b;
+}

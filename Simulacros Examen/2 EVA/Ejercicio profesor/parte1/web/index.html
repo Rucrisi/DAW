@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Calculadora</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="navbar">
+        <button onclick="setUseAPI(false)">Calculadora local</button>
+        <button onclick="setUseAPI(true)">Calculadora API</button>
+    </div>
+
+    <div class="calculator-container">
+        <input type="text" id="pantalla" disabled>
+        <div id="calculator-grid"></div>
+        <button class="clear-btn" onclick="borrar()">C</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

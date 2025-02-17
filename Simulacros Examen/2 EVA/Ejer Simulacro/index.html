@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Aplicación Web</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Mi Aplicación Web</h1>
+        <nav>
+            <a href="#">Inicio</a>
+            <a href="#">Servicios</a>
+            <a href="#">Contacto</a>
+        </nav>
+    </header>
+
+    <section>
+        <img src="imagen.jpg" alt="Imagen de ejemplo">
+        <p onmouseover="mostrarAlerta()">Alerta al pasar el raton sobre este el texto.</p>
+    </section>
+
+    <section>
+        <h2>Calculadora Local</h2>
+        <input type="number" class="box" id="num1">
+        <select id="operacion" class="box">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+        <input type="number" class="box" id="num2"> 
+        <button onclick="calcular()">Calcular</button>
+        <p>Resultado: <span id="resultado"></span></p>
+    </section>
+
+    <section>
+        <h2>Calculadora con API</h2>
+        <input type="number" class="box" id="apiNum1">
+        <select id="apiOperacion" class="box">
+            <option value="suma">+</option>
+            <option value="resta">-</option>
+            <option value="mult">*</option>
+            <option value="divi">/</option>
+        </select>
+        <input type="number" class="box" id="apiNum2">
+        <button onclick="calcularAPI()">Calcular</button>
+        <p>Resultado API: <span id="resultadoAPI"></span></p>
+    </section>
+
+    <section>
+        <button onclick="cambiarColorFondo()">Cambiar color de fondo</button>
+    </section>
+
+    <footer>
+        <p>Contacto: ruben.crispin@gmail.com</p>
+    </footer>
+
+    <script>
+        function cambiarColorFondo() {
+            document.body.style.backgroundColor = '#' + Math.floor(Math.random()*16777215).toString(16);
+        }
+
+        function mostrarAlerta() {
+            alert("¡Has pasado el ratón por encima del texto!");
+        }
+
+        function calcular() {
+            let num1 = parseFloat(document.getElementById('num1').value);
+            let num2 = parseFloat(document.getElementById('num2').value);
+            let operacion = document.getElementById('operacion').value;
+            let resultado;
+
+            switch(operacion) {
+                case '+': resultado = num1 + num2; break;
+                case '-': resultado = num1 - num2; break;
+                case '*': resultado = num1 * num2; break;
+                case '/': resultado = num1 / num2; break;
+                default: resultado = 'Error';
+            }
+
+            document.getElementById('resultado').innerText = resultado;
+        }
+
+        async function calcularAPI() {
+            const num1 = document.getElementById("apiNum1").value;
+            const num2 = document.getElementById("apiNum2").value;
+            const operacion = document.getElementById("apiOperacion").value;
+
+            const url = `http://localhost/calculadora.php?num1=${num1}&num2=${num2}&operacion=${operacion}`;
+            //Guardar calculadora.php en htdocs de XAMP
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                document.getElementById("resultadoAPI").innerText = `${data.resultado}`;
+
+            } catch (error) {
+                console.error("Error:", error);
+            };
+
+            }
+    </script>
+</body>
+</html>
