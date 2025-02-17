@@ -1,0 +1,52 @@
+{
+
+    "Empleados":[{
+
+    "Nombre":"Juan Palomares Hernández",
+
+    "Usuario": "jpalomares@empresa.es",
+
+    "Contraseña":"jy3Rtbm",
+
+    "Historial": [{
+
+    "Lunes": 8,
+
+    "Martes": 9,
+
+    "Miércoles": 7,
+
+    "Jueves": 7,
+
+    "Viernes": 5
+
+    }]
+
+    },
+
+    {
+
+    "Nombre":"Ana Fernández Marín",
+
+    "Usuario": "afernandez@empresa.es",
+
+    "Contraseña":"sw9Ewph",
+
+    "Historial": [{
+
+    "Lunes": 6,
+
+    "Martes": 6,
+
+    "Miércoles": 8,
+
+    "Jueves": 7,
+
+    "Viernes": 8
+
+    }]
+
+    }]
+
+   }
+

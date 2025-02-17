@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de IMC</title>
+</head>
+<body>
+    <h1>Calcula tu Índice de Masa Corporal (IMC)</h1>
+    <form action="calcular_imc.php" method="POST">
+        <label for="peso">Peso (kg):</label>
+        <input type="number" name="peso" required>
+        <br><br>
+
+        <label for="estatura">Estatura (cm):</label>
+        <input type="number" name="estatura" required>
+        <br><br>
+
+        <input type="submit" value="Calcular IMC">
+    </form>
+</body>
+</html>
