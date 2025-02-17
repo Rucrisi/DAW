@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animación con jQuery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+        .menu {
+            display: flex;
+            gap: 20px;
+        }
+        .menu button {
+            background-color: green;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="menu">
+        <button id="boton1">Boton 1</button>
+        <button id="boton2">Boton 2</button>
+        <button id="boton3">Boton 3</button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#boton1').hover(
+                function() { $(this).css('background-color', 'red'); },
+                function() { $(this).css('background-color', 'green'); }
+            );
+
+            $('#boton2').hover(
+                function() { $(this).css('background-color', 'blue'); },
+                function() { $(this).css('background-color', 'green'); }
+            );
+
+            $('#boton3').hover(
+                function() { $(this).css('background-color', 'orange'); },
+                function() { $(this).css('background-color', 'green'); }
+            );
+        });
+    </script>
+</body>
+</html>

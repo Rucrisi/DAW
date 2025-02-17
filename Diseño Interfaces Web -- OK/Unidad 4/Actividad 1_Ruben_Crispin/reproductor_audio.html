@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reproductor de Audio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+        h1 {
+            font-size: 26px;
+            color: #333;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        .audio-player {
+            text-align: center;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .audio-player button {
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            margin: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.2s ease, background-color 0.3s ease;
+        }
+        .audio-player button:hover {
+            transform: scale(1.1);
+        }
+        .audio-player button.active {
+            transform: scale(1.2);
+        }
+        #play {
+            background-color: hsl(108, 39%, 49%);
+        }
+        #pause {
+            background-color: hwb(24 0% 0%);
+        }
+        #stop {
+            background-color: hwb(0 0% 0%);
+        }
+    </style>
+</head>
+<body>
+    <div class="audio-player">
+        <h1>Reproductor de Audio</h1>
+        <audio id="audio">
+            <source src="demo.mp3" type="audio/mp3">
+            Tu navegador no soporta el elemento de audio.
+        </audio>
+        <button id="play">►</button>
+        <button id="pause">ǁ</button>
+        <button id="stop">∎</button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            const audio = document.getElementById('audio');
+
+            $('#play').click(function() {
+                audio.play();
+                $(this).addClass('active');
+                $('#pause, #stop').removeClass('active');
+            });
+
+            $('#pause').click(function() {
+                audio.pause();
+                $(this).addClass('active');
+                $('#play, #stop').removeClass('active');
+            });
+
+            $('#stop').click(function() {
+                audio.pause();
+                audio.currentTime = 0; // Reinicia el audio al inicio
+                $(this).addClass('active');
+                $('#play, #pause').removeClass('active');
+            });
+        });
+    </script>
+</body>
+</html>

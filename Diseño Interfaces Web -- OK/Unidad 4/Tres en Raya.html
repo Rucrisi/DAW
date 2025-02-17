@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3 en Raya</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <style>
+        *{
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+        }
+
+        .cuadro {
+            width: 100px;
+            height: 100px;
+            background-color: lightgray;
+            color: white;
+            border-radius: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            box-shadow: 5px 5px 2px rgba(0, 0, 0, 0.5); /* Sombra para el texto */;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(3, 100px); /* Tres columnas de 100px */
+            grid-gap: 15px; /* Espacio entre los cuadros */
+            justify-content: center; /* Centrar horizontalmente */
+            margin: 20px auto; /* Centrar el contenedor */
+            width: max-content; /* Ajustar el ancho al contenido */
+        }
+
+        .reset-button, .validate-button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5); /* Sombra para el texto */;
+        }
+
+        .reset-button:hover, .validate-button:hover {
+            background-color: #0056b3;
+        }
+
+        .victory {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: green;
+            font-weight: bold;
+            text-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5); /* Sombra para el texto */
+        }
+
+        h1 {
+            font-size: 4em;
+            color:  #007BFF;
+            -webkit-background-clip: text;
+            background-clip: text;
+            text-align: center;
+            text-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5); /* Sombra para el texto */
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>3 en Raya</h1>
+    <div class="container">
+        <div class="cuadro"></div>
+        <div class="cuadro"></div>
+        <div class="cuadro"></div>
+        <div class="cuadro"></div>
+        <div class="cuadro"></div>
+        <div class="cuadro"></div>
+        <div class="cuadro"></div>
+        <div class="cuadro"></div>
+        <div class="cuadro"></div>
+    </div>
+
+    <button class="validate-button">Validar Victoria</button>
+    <button class="reset-button">Reiniciar Colores</button>
+    <div class="victory" id="victory-message" style="display: none;"></div>
+
+    <script>
+        $(document).ready(function () {
+            const victoryMessage = $("#victory-message");
+            const checkVictory = () => {
+                const colors = $(".cuadro").map(function () {
+                    return $(this).css("background-color");
+                }).get();
+
+                // Combinaciones ganadoras (índices en el array de cuadros)
+                const winningCombos = [
+                    [0, 1, 2], // Fila superior
+                    [3, 4, 5], // Fila del medio
+                    [6, 7, 8], // Fila inferior
+                    [0, 3, 6], // Columna izquierda
+                    [1, 4, 7], // Columna del medio
+                    [2, 5, 8], // Columna derecha
+                    [0, 4, 8], // Diagonal principal
+                    [2, 4, 6]  // Diagonal secundaria
+                ];
+
+                for (const combo of winningCombos) {
+                    const [a, b, c] = combo;
+                    if (
+                        colors[a] !== "rgb(211, 211, 211)" && // Comprobar que no es "lightgray"
+                        colors[a] === colors[b] &&
+                        colors[b] === colors[c]
+                    ) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+                //Cambios de color con callbacks
+                $(".cuadro").click(function () {
+
+                    if($(this).css('background-color') == "rgb(211, 211, 211)"){
+
+                        $(this).fadeOut(250, function(){
+                            $(this).css('background-color','red').fadeIn(250);
+                            $(this).css('box-shadow','5px 5px 2px rgb(255, 0, 0, 0.5)').fadeIn(250);
+                        });
+
+                    } else if($(this).css('background-color') == "rgb(255, 0, 0)"){
+
+                        $(this).fadeOut(250, function(){
+                            $(this).css('background-color','green').fadeIn(250);
+                            $(this).css('box-shadow','5px 5px 2px rgba(0, 128, 0, 0.5)').fadeIn(250);
+                        });
+
+                    } else if($(this).css('background-color') == "rgb(0, 128, 0)"){
+
+                        $(this).fadeOut(250, function(){
+                            $(this).css('background-color','rgb(211, 211, 211)').fadeIn(250);
+                            $(this).css('box-shadow','5px 5px 2px rgba(0, 0, 0, 0.5)').fadeIn(250);
+                        });
+                    }
+                });
+
+                //Acion mensaje validador de victoria
+                $(".validate-button").click(function () {
+                if (checkVictory()) {
+                    victoryMessage.text("¡Victoria! Tres colores alineados.");
+                    victoryMessage.show();
+                } else {
+                    victoryMessage.text("No hay victoria aún.");
+                    victoryMessage.show();
+                }
+                });
+
+                $(".reset-button").click(function () {
+                    $(".cuadro").css("background-color", "lightgray");
+                    $(".cuadro").css('box-shadow','5px 5px 2px rgba(0, 0, 0, 0.5)').fadeIn(250);
+                    victoryMessage.hide();
+                    victoryMessage.text("");
+                });
+        });
+    </script>
+</body>
+</html>
