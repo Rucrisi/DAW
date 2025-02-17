@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Votos</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
+</head>
+<body>
+
+    <h1>Registro de votos</h1>
+
+    <script>
+        // Prototipo de objeto Voto
+        function Voto(color) {
+            this.color = color;
+            this.fecha = new Date();
+        }
+
+        var votosColores = ["Rojo", "Verde", "Rojo", "Verde", "Azul", "Azul", "Rojo", "Rojo", "Verde", "Azul",
+                            "Rojo", "Verde", "Azul", "Azul", "Azul", "Rojo", "Verde", "Rojo", "Rojo", "Verde"];
+
+        var votos = [];
+
+        // Crear objetos Voto a partir del array de colores
+        for (var i = 0; i < votosColores.length; i++) {
+            votos.push(new Voto(votosColores[i]));
+        }
+
+        // Mostrar los votos como texto
+        for (var i = 0; i < votos.length; i++) {
+            var fechaFormateada = moment(votos[i].fecha).format("DD/MM/YYYY => HH:mm:ss");
+            document.write("Voto " + (i + 1) + ": Color = " + votos[i].color + ", Fecha = " + fechaFormateada + "<br>");
+        }
+    </script>
+
+</body>
+</html>

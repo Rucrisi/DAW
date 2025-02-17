@@ -1,0 +1,78 @@
+<html>
+    <head>
+        <title>Validador de expresiones regulares con eventos</title>
+        <meta charset="UTF-8">
+        <script src="evaluate.js"></script>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
+        <style>
+            .container {
+                font-family: 'Roboto', sans-serif;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                -ms-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+                height: 100%;
+            }
+            .green {
+                color: #00bb00;
+            }
+            .red {
+                color: #ff0000;
+            }
+            .center {
+                padding: 20px 0;
+                margin: 10px;
+                text-align: center;
+            }
+
+            input[type=text] {
+                width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1> Validacion de Formularios</h1>
+            <div class="center">
+                <label>Escribe tu fecha de nacimiento en formato DD-MM-AAAA </label>
+                <i id="checkEx1" class="fas fa-check green" style="display: none;"></i>
+                <input type="text" id="inputEx1" onblur="validateDate1()">
+                <span id="errorEx1" class="red" style="display: none;"></span>
+            </div>
+            <div class="center">
+                <label>Escribe tu fecha de nacimiento en formato DD-MM-AAAA o DD/MM/AAAA </label>
+                <i id="checkEx2" class="fas fa-check green" style="display: none;"></i>
+                <input type="text" id="inputEx2" onblur="validateDate2()">
+                <span id="errorEx2" class="red" style="display: none;"></span>
+            </div>
+            <div class="center">
+                <label>Escribe un número de teléfono <u>móvil o fijo</u> de España. Formatos válidos (977123456, 977 123 456) </label>
+                <i id="checkEx3" class="fas fa-check green" style="display: none;"></i>
+                <input type="text" id="inputEx3" onblur="validatePhone1()">
+                <span id="errorEx3" class="red" style="display: none;"></span>
+            </div>
+            <div class="center">
+                <label>Escribe un número de teléfono con los formatos anteriores, y que además sea opcional el código internacional en formato +034 (tres dígitos), por ejemplo +034 977 123 456, +034 977123456, +034977123456, etc.</label>
+                <i id="checkEx4" class="fas fa-check green" style="display: none;"></i>
+                <input type="text" id="inputEx4" onblur="validatePhone2()">
+                <span id="errorEx4" class="red" style="display: none;"></span>
+            </div>
+            <div class="center">
+                <label>Escribe una contraseña que contenga letras y números. Además ha de tener más de 8 caracteres.</label>
+                <i id="checkEx5" class="fas fa-check green" style="display: none;"></i><br>
+                <label style="font-style: italic;">La contraseña ha de ser en alfabeto latino, variante española.</label>
+                <input type="text" id="inputEx5" onblur="validatePassword()">
+                <span id="errorEx5" class="red" style="display: none;"></span>
+            </div>
+        </div>
+    </body>
+</html>

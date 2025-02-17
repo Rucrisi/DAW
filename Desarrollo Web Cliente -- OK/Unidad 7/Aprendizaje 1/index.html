@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cargar Archivo de Texto</title>
+    <script>
+        async function cargarTexto() {
+            try {
+                let respuesta = await fetch('datos.txt'); // Cargar el archivo
+                let texto = await respuesta.text(); // Convertirlo a texto
+                document.getElementById('contenido').innerText = texto; // Mostrar en el párrafo
+            } catch (error) {
+                console.error('Error al cargar el archivo:', error);
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Programación Asíncrona - Cargar Archivo de Texto</h1>
+    <button onclick="cargarTexto()">Cargar Texto</button>
+    <p id="contenido">Aquí se mostrará el contenido del archivo.</p>
+</body>
+</html>

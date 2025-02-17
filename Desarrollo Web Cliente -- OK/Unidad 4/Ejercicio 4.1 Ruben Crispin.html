@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Personal</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
+</head>
+<body>
+
+    <h1>Sistema de Gestión de Personal</h1>
+
+    <script>
+        // Función constructora para crear el objeto empleado
+        function Empleado(nombre, departamento, antiguedad, fechaNacimiento) {
+            this.nombre = nombre;
+            this.departamento = departamento;
+            this.antiguedad = antiguedad;
+            this.fechaNacimiento = new Date(fechaNacimiento);
+            this.getDescripcion = function() {
+                // Método para generar la descripción del empleado
+                const fechaFormateada = moment(this.fechaNacimiento).format("DD/MM/YYYY");
+                return `Empleado: ${this.nombre}, Departamento: ${this.departamento}, Antigüedad: ${this.antiguedad} años, Fecha de Nacimiento: ${fechaFormateada}`;
+            };
+        }
+
+        // Función para solicitar datos del empleado por pantalla
+        function solicitarEmpleado() {
+            const nombre = prompt("Introduce el nombre del empleado:");
+            const departamento = prompt("Introduce el departamento del empleado:");
+            const antiguedad = parseInt(prompt("Introduce la antigüedad en años del empleado:"), 10);
+            const fechaNacimiento = prompt("Introduce la fecha de nacimiento (formato YYYY-MM-DD):");
+            return new Empleado(nombre, departamento, antiguedad, fechaNacimiento);
+        }
+
+        // Array para almacenar los empleados
+        let empleados = [];
+
+        // Solicitar empleados mediante un bucle para introducir varios
+        let continuar = true;
+        while (continuar) {
+            empleados.push(solicitarEmpleado());
+            continuar = confirm("¿Deseas añadir otro empleado?");
+        }
+
+        // Mostrar la descripción de todos los empleados
+        document.write("<h2>Lista de empleados</h2>");
+        empleados.forEach(empleado => {
+            document.write(`<p>${empleado.getDescripcion()}</p>`);
+        });
+
+        //---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        // Convertir el objeto Empleado en un prototipo
+        function EmpleadoPrototipo(nombre, departamento, antiguedad, fechaNacimiento) {
+            this.nombre = nombre;
+            this.departamento = departamento;
+            this.antiguedad = antiguedad;
+            this.fechaNacimiento = new Date(fechaNacimiento);
+        }
+
+        // Agregar el método de descripción al prototipo
+        EmpleadoPrototipo.prototype.getDescripcion = function() {
+            const fechaFormateada = moment(this.fechaNacimiento).format("DD/MM/YYYY");
+            return `Empleado: ${this.nombre}, Departamento: ${this.departamento}, Antigüedad: ${this.antiguedad} años, Fecha de Nacimiento: ${fechaFormateada}`;
+        };
+
+        // Crear empleados usando el prototipo
+        let empleadosPrototipo = empleados.map(empleado =>
+            new EmpleadoPrototipo(empleado.nombre, empleado.departamento, empleado.antiguedad, empleado.fechaNacimiento)
+        );
+
+        // Mostrar las descripciones generadas por el prototipo
+        document.write("<h2>Lista de empleados (con prototipo)</h2>");
+        empleadosPrototipo.forEach(empleado => {
+            document.write(`<p>${empleado.getDescripcion()}</p>`);
+        });
+        //---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    </script>
+
+</body>
+</html>

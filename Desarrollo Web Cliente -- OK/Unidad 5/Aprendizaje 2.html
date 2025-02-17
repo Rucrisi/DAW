@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Contacto</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+        .form-container {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        .form-container label {
+            font-size: 16px;
+            display: block;
+            margin-bottom: 8px;
+        }
+        .form-container input, .form-container textarea {
+            width: 90%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .form-container button:hover {
+            background-color: #45a049;
+        }
+        .error {
+            color: red;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Formulario de Contacto</h2>
+        <form id="contactForm">
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" name="name">
+            <label for="email">Correo Electrónico:</label>
+            <input type="email" id="email" name="email">
+            <label for="message">Mensaje:</label>
+            <textarea id="message" name="message"></textarea>
+            <button type="submit">Enviar</button>
+        </form>
+        <p id="error-message" class="error"></p>
+    </div>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit',
+
+        function(event) {
+            event.preventDefault(); // Evitar el envio del formulario si no esta validado
+
+            // Obtener los valores de los campos
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var message = document.getElementById('message').value;
+            var errorMessage = document.getElementById('error-message');
+
+            // Validar que todos los campos tengan contenido
+            if (!name || !email || !message) {
+                errorMessage.textContent = 'Por favor, complete todos los campos.';
+            } else {
+                errorMessage.textContent = ''; // Limpiar mensaje de error
+                alert('Formulario enviado correctamente');
+                document.getElementById('contactForm').reset(); // Limpiar campos del formulario
+            }
+        });
+    </script>
+</body>
+</html>

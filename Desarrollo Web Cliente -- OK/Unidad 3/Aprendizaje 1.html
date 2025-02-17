@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cambiar color de fondo</title>
+    <style>
+            body {
+                background-color: white; /* Color de fondo inicial */
+            }
+            .buttons{
+                position: absolute;
+                top: 10px;
+                right: 10px;
+            }
+    </style>
+</head>
+<body>
+    <div class="buttons">
+        <button onclick=" fondoRojo()">Fondo Rojo</button>
+        <button onclick=" fondoVerde()">Fondo Verde</button>
+        <button onclick=" fondoAmarillo()">Fondo Amarillo</button>
+        <button onclick=" fondoAzul()">Fondo Azul</button>
+        <button onclick=" fondoOriginal()">Fondo Original</button>
+    </div>
+
+    <script>
+        function fondoRojo() {
+            document.body.style.backgroundColor = "Red";
+        }
+        function fondoVerde() {
+            document.body.style.backgroundColor = "Green";
+        }
+        function fondoAmarillo() {
+            document.body.style.backgroundColor = "Yellow";
+        }
+        function fondoAzul() {
+            document.body.style.backgroundColor = "Blue";
+        }
+
+        let originalColor; // Variable para guardar el color original
+
+        originalColor = getComputedStyle(document.body).backgroundColor; // Funcion para guardar el color original
+
+        function fondoOriginal() {
+            document.body.style.backgroundColor = originalColor;
+        }
+    </script>
+</body>
+</html>

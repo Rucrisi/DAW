@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos de Ratón</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+        .button-container {
+            text-align: center;
+        }
+        .button-container button {
+            padding: 15px 30px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            transition: background-color 0.3s;
+        }
+        .button-container button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="button-container">
+        <h1>Eventos de Ratón</h1>
+        <button id="clickButton">Click</button>
+        <button id="dblClickButton">Double Click</button>
+        <button id="mousedownButton">Mouse Down</button>
+        <button id="mouseoverButton">Mouse Over</button>
+    </div>
+
+    <script>
+        // Función para mostrar el tipo de evento
+        function showEvent(tipo) {
+            alert("El evento es: " + tipo);
+        }
+
+        // Captura de los eventos con escucha
+        document.getElementById('clickButton').addEventListener('click', function() {
+            showEvent('onclick');
+        });
+
+        document.getElementById('dblClickButton').addEventListener('dblclick', function() {
+            showEvent('ondblclick');
+        });
+
+        document.getElementById('mousedownButton').addEventListener('mousedown', function() {
+            showEvent('onmousedown');
+        });
+
+        document.getElementById('mouseoverButton').addEventListener('mouseover', function() {
+            showEvent('onmouseover');
+        });
+    </script>
+</body>
+</html>

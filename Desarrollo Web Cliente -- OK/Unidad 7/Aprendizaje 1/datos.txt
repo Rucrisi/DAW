@@ -1,0 +1,1 @@
+Texto cargado desde .txt de manera asincrona

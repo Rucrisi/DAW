@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JUEGO ADIVINAR</title>
+<meta charset="UTF-8">
+</head>
+<body>
+<script>
+    // Numero aleatorio entre 1 y 10
+    function numeroAleatorio() {
+        return Math.floor(Math.random() * 10) + 1; /*Se genera numero aleatorio incluso decimal, se multiplica por 10,
+        se redondea el numero sin importar los decimales y se le suma 1 por que el reondeo es de 0 a 9.*/
+    }
+
+    // Instrucciones del juego
+    function instrucciones() {
+        alert("Instrucciones:\n" +
+            "Se genera un numero aleatorio entre 1 y 10.\n" +
+            "Tienes 3 intentos para adivinarlo.\n" +
+            "Si aciertas, te felicitaremos y volveras al menu.\n" +
+            "Si no aciertas en 3 intentos, volveras al menu.");
+    }
+
+    // Función para jugar
+    function jugar() {
+        var numero1 = numeroAleatorio();
+        let intentos = 3;
+        let correcto = false;
+
+    // Ciclo para adivinar hasta 3 veces
+        while (intentos > 0 && !correcto) {
+            let numero2 = prompt("Adivina un numero entre 1 y 10. Te quedan " + intentos + " intentos:");
+
+            if (numero2 === numero1) {
+                alert("¡Felicidades! Has adivinado el numero.");
+                correcto = true;
+            } else {
+                intentos--;
+                if (intentos > 0) {
+                    alert("Incorrecto. Intenta de nuevo.");
+                } else {
+                    alert("Perdiste. El numero era: " + numero1);
+                }
+            }
+        }
+    }
+
+    // Mostrar el menú principal
+    function menu() {
+        let opcion;
+
+        do {
+            opcion = prompt("Menu Principal\n" +
+                            "1. JUGAR\n" +
+                            "2. INSTRUCCIONES\n" +
+                            "3. SALIR\n" +
+                            "Elige una opcion:");
+
+            switch(opcion) {
+                case '1':
+                    jugar();
+                    break;
+                case '2':
+                    instrucciones();
+                    break;
+                case '3':
+                    alert("Gracias por jugar.");
+                    break;
+                default:
+                    alert("Opcion invalida. Elige 1, 2 o 3.");
+            }
+
+        } while (opcion !== '3'); // Mientras sea diferente de 3 podra seguir navegando en el menu
+    }
+
+    // Iniciar el programa mostrando el menú
+    menu();
+</script>
+</body>
+</html>

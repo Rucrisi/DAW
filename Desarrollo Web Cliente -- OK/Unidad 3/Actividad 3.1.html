@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad 1</title>
+</head>
+<body>
+
+    <p id="fecha"></p>
+
+    <p id="medidas"></p>
+
+    <a href="javascript:preguntarNombre()">Introduce el nombre</a>
+
+    <script>
+
+        window.onload = function() {
+            mostrarHora();
+            mostrarMedidas();
+            }
+
+        //Actualizar las medidas de la ventana cuando se cambia el tamaño
+        window.onresize = function(){
+            mostrarMedidas();
+        };
+
+        //Mostrar la hora actual en formato dd/mm/aaaa
+        function mostrarHora() {
+            const now = new Date();
+            const dia = now.getDate();
+            const mes = now.getMonth() + 1; // Los meses comienzan desde 0
+            const ano = now.getFullYear();
+            document.getElementById('fecha').innerHTML  = 'La fecha actual es: ' + dia +'/'+ mes +'/'+ ano;
+        }
+
+        //Mostrar las medidas actuales de la ventana
+        function mostrarMedidas() {
+            const ancho = window.innerWidth;
+            const alto = window.innerHeight;
+            document.getElementById('medidas').innerHTML  = 'El tamaño de la ventana es: ' + ancho + '  px por ' + alto + ' px.';
+        }
+
+        //Función para establecer una cookie
+            function setCookie(name, value) {
+            document.cookie = name + "=" + value;
+        }
+
+        //Función para obtener el valor de la ultima cookie
+        function getCookie(name) {
+            const cookieArray = document.cookie.split(';');
+            for (let i = 0; i < cookieArray.length; i++) {
+                let cookie = cookieArray[i].trim();
+                if (cookie.indexOf(name + "=") === 0) {
+                    return cookie.substring((name + "=").length, cookie.length);
+                }
+            }
+            return "";
+        }
+
+        function preguntarNombre() {
+            //Cargar la cookie
+            let nombre = getCookie("nombre");
+
+            const usuario = prompt("Buenas, ¿Cómo te llamas?", nombre);
+
+            const nuevaVentana = window.open("", "Saludo", "width=300,height=300");
+
+            if (usuario == null || usuario == '') {
+                nuevaVentana.document.write('<h1>ERROR: No has ingresado un nombre.</h1>');
+            }else{
+                //Guardar el nombre en una cookie
+                setCookie("nombre", usuario);
+
+                //Mostrar en una nueva ventana el saludo
+                nuevaVentana.document.write('<h1>Bienvenido, ' + usuario + '</h1>');
+            }
+        }
+    </script>
+</body>
+</html>

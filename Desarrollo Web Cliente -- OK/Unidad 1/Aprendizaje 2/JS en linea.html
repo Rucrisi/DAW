@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fecha Actual</title>
+</head>
+<body>
+    <h1>Mostrar Fecha</h1>
+    <p id="fecha"></p>
+
+    <script>
+        var today = new Date();
+        var m = today.getMonth() + 1;
+        var mes = (m < 10) ? '0' + m : m;
+        document.getElementById("fecha").innerHTML = 'Fecha: ' + today.getDate() + '/' + mes + '/' + today.getFullYear();
+    </script>
+</body>
+</html>

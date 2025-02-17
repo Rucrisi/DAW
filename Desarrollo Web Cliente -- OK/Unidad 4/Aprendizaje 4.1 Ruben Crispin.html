@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprendizaje 4.1</title>
+</head>
+<body>
+
+    <h1>Recuento de votos</h1>
+
+    <script>
+        var votos = ["Rojo", "Verde", "Rojo", "Verde", "Azul", "Azul", "Rojo", "Rojo", "Verde", "Azul",
+                     "Rojo", "Verde", "Azul", "Azul", "Azul", "Rojo", "Verde", "Rojo", "Rojo", "Verde"]
+        var votosRojo = 0;
+        var votosAzul = 0;
+        var votosVerde = 0;
+        maxVotos = 0;
+
+    for (i in votos) {
+        if (votos[i] == "Rojo") {
+            votosRojo++;
+        }
+         if (votos[i] == "Azul") {
+            votosAzul++;
+        }
+        if (votos[i] == "Verde") {
+            votosVerde++;
+        }
+    }
+    if (votosRojo > votosAzul && votosRojo > votosVerde){
+        masVotado = "Rojo";
+        maxVotos = votosRojo;
+    }
+    else if (votosAzul > votosRojo && votosAzul > votosVerde){
+        masVotado = "Azul";
+        maxVotos = votosAzul;
+    }
+    else if (votosVerde > votosRojo && votosVerde > votosAzul){
+        masVotado = "Verde";
+        maxVotos = votosVerde;
+    }
+
+        document.write("Hay " + votosRojo + " votos Rojos.<br>");
+        document.write("Hay " + votosAzul + " votos Azules.<br>");
+        document.write("Hay " + votosVerde + " votos Verdes.<br>");
+        document.write("El color más votado es: " + masVotado + " con " + maxVotos + " votos.");
+    </script>
+
+</body>
+</html>

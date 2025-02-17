@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Carta Aleatoria - Magic: The Gathering</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#cargarCarta").click(function() {
+                $.ajax({
+                    url: "https://api.scryfall.com/cards/random", // URL de la API
+                    type: "GET",
+                    dataType: "json",
+                    success: function(data) {
+                        let tabla = $("#tablaCarta tbody");
+                        tabla.empty(); // Limpiar la tabla antes de agregar una nueva carta
+
+                        // Extraer datos de la carta
+                        let nombre = data.name || "Desconocido";
+                        let tipo = data.type_line || "Sin tipo";
+                        let rareza = data.rarity || "Desconocida";
+                        let imagen = data.image_uris ? data.image_uris.normal : "https://via.placeholder.com/200"; // Imagen o placeholder
+
+                        let fila = `<tr>
+                            <td>${nombre}</td>
+                            <td>${tipo}</td>
+                            <td>${rareza}</td>
+                            <td><img src="${imagen}" alt="Carta de Magic" width="200"></td>
+                        </tr>`;
+
+                        tabla.append(fila);
+                    },
+                    error: function() {
+                        alert("Error al obtener la carta.");
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Carta Aleatoria de Magic: The Gathering</h1>
+    <table border="1" id="tablaCarta">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Tipo</th>
+                <th>Rareza</th>
+                <th>Imagen</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Aqui se inserta la carta -->
+        </tbody>
+    </table>
+    <br>
+    <button id="cargarCarta">Obtener Carta</button>
+</body>
+</html>
