@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boceto con Cuadrados y Degradado</title>
+    <style>
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New';
+            background: linear-gradient(to bottom, red, white,red);
+        }
+
+        /* Estilo del header */
+        header {
+            background: linear-gradient(to left, red,black);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin: 5px;
+            border-radius: 0px;
+        }
+
+        /* Contenedor principal */
+        .container {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+            margin: 10px;
+        }
+
+        /* Estilos para el contenido del medio */
+        .main {
+            flex: 1;
+            display: flex;
+            margin: 10px;
+        }
+
+        /* Menú a la izquierda */
+        nav {
+            width: 15%;
+            background: linear-gradient(to bottom, black, white);
+            padding: 20px;
+            margin: 5px;
+            border-radius: 0px;
+            color: white;
+        }
+
+        nav ul {
+            list-style-type: none;
+        }
+
+        nav ul li {
+            margin-bottom: 10px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+        }
+
+        /* Cuerpo del contenido a la derecha */
+        .content {
+            flex: 1;
+            background: linear-gradient(to bottom, red, white);
+            padding: 20px;
+            margin: 5px;
+            border-radius: 0px;
+            color: white;
+        }
+
+        /* Footer en la parte inferior */
+        footer {
+            background: linear-gradient(to left, red,black);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 0px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>Titulo de la Pagina</h1>
+        </header>
+
+        <!-- Contenido principal -->
+        <div class="main">
+            <!-- Menú a la izquierda -->
+            <nav>
+                <ul>
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Servicios</a></li>
+                    <li><a href="#">Sobre Nosotros</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+            </nav>
+
+            <!-- Contenido a la derecha -->
+            <div class="content">
+                <h2>Bienvenidos a Nuestra Pagina</h2>
+                <p>Este es el contenido principal.</p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>Pie de pagina © 2024</p>
+        </footer>
+    </div>
+
+</body>
+</html>

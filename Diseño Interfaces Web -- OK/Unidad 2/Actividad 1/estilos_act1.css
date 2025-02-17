@@ -1,0 +1,106 @@
+html, body {
+    height: 100%;
+    margin: 20;
+    display: flex;
+    justify-content: center; /* Centra horizontalmente el contenido */
+    align-items: center; /* Centra verticalmente el contenido */
+    background-color: white;
+    flex-direction: column; /* Coloca los bloques en columnas */
+    color:rgb(27, 26, 26);
+    font-size: 10px;
+    font-family: sans-serif;
+}
+
+.block.header span {
+    display: block;
+    line-height: 0.9; /* Elimina el interlineado */
+}
+
+.block {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 40%; /* Ajusta el ancho de los bloques */
+    padding: 10px;
+}
+
+.blockL {
+    flex: 0 0 20%;
+    text-align: right;
+    align-self: flex-start; /* Alinea a la parte superior del bloque */
+    padding: 0 20px;
+}
+
+.blockR {
+    flex: 0 0 80%;
+    text-align: left;
+    padding: 0 20px;
+}
+
+.roundIMG {
+    width: 125px;
+    height: 125px;
+    border-radius: 50%;
+}
+
+.title {
+    font-size: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.subtitle {
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.progressbar {
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+    height: 10px;
+    margin-top: 5px;
+}
+
+.progressbar div {
+    height: 100%;
+    background-color: orange;
+}
+
+.content span {
+    display: block;
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.c_emphasy1 {
+    color: orange;
+}
+
+.twocolumn {
+    column-count: 2; /* Divide en dos columnas el contenido */
+}
+
+#name{
+    font-size: 30px;
+}
+
+#surname{
+    font-size: 70px;
+    font-weight: bolder;
+    text-transform: uppercase; /* Transforma en mayuculas */
+}
+
+.header span{
+    font-size: 15px;
+}
+
+li{
+    font-weight: bold;
+    color:orange;
+}
+
+li span{
+    font-weight: normal;
+    color:rgb(27, 26, 26);
+}

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CINES DIW</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/estilos.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
+<style>
+body, html {height: 100%}
+body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
+.menu {display: none}
+.bgimg {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("img/cine-premium.jpg");
+  min-height: 90%;
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top w3-hide-small">
+  <div class="w3-bar w3-xlarge w3-green w3-opacity w3-hover-opacity-off" id="myNavbar">
+    <a href="#" class="w3-bar-item w3-button">INICIO</a>
+    <a href="#salas" class="w3-bar-item w3-button">SALAS</a>
+    <a href="#servicios" class="w3-bar-item w3-button">SERVICIOS</a>
+    <a href="#taquilla" class="w3-bar-item w3-button">TAQUILLA</a>
+  </div>
+</div>
+
+<!-- Header with image -->
+<header class="bgimg w3-display-container w3-grayscale-min" id="home">
+  <div class="w3-display-bottomleft w3-padding">
+    <span class="w3-tag w3-xlarge">Abierto de 12am hasta 12pm</span>
+  </div>
+  <div class="w3-display-middle w3-center">
+    <span class="w3-text-white w3-hide-small" style="font-size:100px"><br><b>CINES DIW</b></span>
+    <span class="w3-text-white w3-hide-small" style="font-size:50px"><br>Tus cines Preferidos</span>
+    <p><a href="#salas" class="w3-button w3-xxlarge w3-green">Entra en Nuestras Salas</a></p>
+  </div>
+</header>
+
+<!-- Salas -->
+<div class="w3-container w3-black w3-padding-64 w3-xxlarge" id="salas">
+  <div class="w3-content">
+
+    <h1 class="w3-center w3-jumbo" style="margin-bottom:64px"><b>SALAS</b></h1>
+    <div class="w3-row w3-center w3-border w3-border-dark-grey">
+      <a href="javascript:void(0)" onclick="openMenu(event, 'Madrid');" id="myLink">
+        <div class="w3-col s4 tablink w3-padding-large w3-hover-lime">Madrid</div>
+      </a>
+      <a href="javascript:void(0)" onclick="openMenu(event, 'Barcelona');">
+        <div class="w3-col s4 tablink w3-padding-large w3-hover-lime">Barcelona</div>
+      </a>
+      <a href="javascript:void(0)" onclick="openMenu(event, 'Sevilla');">
+        <div class="w3-col s4 tablink w3-padding-large w3-hover-lime">Sevilla</div>
+      </a>
+    </div>
+
+    <div id="Madrid" class="w3-container menu w3-padding-32 w3-white">
+      <h1><b>Origen</b> <span class="w3-right w3-tag w3-dark-grey w3-round">Sala 1</span></h1>
+      <p class="w3-text-grey">13:00 - 16:00 - 19:00 - 22:00</p>
+      <hr>
+
+      <h1><b>El Señor de los Anillos</b> <span class="w3-right w3-tag w3-dark-grey w3-round">Sala 2</span></h1>
+      <p class="w3-text-grey">13:30 - 16:30 - 19:30 - 22:30</p>
+      <hr>
+
+      <h1><b>Interestelar</b> <span class="w3-right w3-tag w3-dark-grey w3-round">Sala 3</span></h1>
+      <p class="w3-text-grey">13:00 - 16:00 - 19:00 - 22:00</p>
+      <hr>
+
+      <h1><b>Piratas del Caribe</b> <span class="w3-right w3-tag w3-dark-grey w3-round">Sala 4</span></h1>
+      <p class="w3-text-grey">13:30 - 16:30 - 19:30 - 22:30</p>
+      <hr>
+
+      <h1><b>Figth Club</b> <span class="w3-tag w3-red w3-round">Hot!</span><span class="w3-right w3-tag w3-dark-grey w3-round">Sala 5</span></h1>
+      <p class="w3-text-grey">13:00 - 16:00 - 19:00 - 22:00</p>
+    </div>
+
+    <div id="Barcelona" class="w3-container menu w3-padding-32 w3-white">
+      <h1><b>Infinite</b> <span class="w3-right w3-tag w3-dark-grey w3-round">Sala 1</span></h1>
+      <p class="w3-text-grey">13:00 - 16:00 - 19:00 - 22:00</p>
+      <hr>
+
+      <h1><b>The Giver</b> <span class="w3-right w3-tag w3-dark-grey w3-round">Sala 2</span></h1>
+      <p class="w3-text-grey">13:30 - 16:30 - 19:30 - 22:30</p>
+      <hr>
+
+      <h1><b>Mortal Engines</b> <span class="w3-right w3-tag w3-dark-grey w3-round">Sala 3</span></h1>
+      <p class="w3-text-grey">13:00 - 16:00 - 19:00 - 22:00</p>
+      <hr>
+
+      <h1><b>Carnival Row</b> <span class="w3-right w3-tag w3-dark-grey w3-round">Sala 4</span></h1>
+      <p class="w3-text-grey">13:30 - 16:30 - 19:30 - 22:30</p>
+      <hr>
+
+      <h1><b>Deadpool</b> <span class="w3-right w3-tag w3-dark-grey w3-round">Sala 5</span></h1>
+      <p class="w3-text-grey">13:00 - 16:00 - 19:00 - 22:00</p>
+    </div>
+
+    <div id="Sevilla" class="w3-container menu w3-padding-32 w3-white">
+      <h1><b>Wolfs</b> <span class="w3-right w3-tag w3-dark-grey w3-round">Sala 1</span></h1>
+      <p class="w3-text-grey">13:00 - 16:00 - 19:00 - 22:00</p>
+      <hr>
+
+      <h1><b>Los feos</b> <span class="w3-right w3-tag w3-dark-grey w3-round">Sala 2</span></h1>
+      <p class="w3-text-grey">13:30 - 16:30 - 19:30 - 22:30</p>
+      <hr>
+
+      <h1><b>Civil war</b> <span class="w3-right w3-tag w3-dark-grey w3-round">Sala 3</span></h1>
+      <p class="w3-text-grey">13:00 - 16:00 - 19:00 - 22:00</p>
+      <hr>
+
+      <h1><b>Napoleón</b> <span class="w3-right w3-tag w3-dark-grey w3-round">Sala 4</span></h1>
+      <p class="w3-text-grey">13:30 - 16:30 - 19:30 - 22:30</p>
+      <hr>
+
+      <h1><b>Godzilla</b> <span class="w3-right w3-tag w3-dark-grey w3-round">Sala 5</span></h1>
+      <p class="w3-text-grey">13:00 - 16:00 - 19:00 - 22:00</p>
+    </div><br>
+
+  </div>
+</div>
+
+<!-- Servicios -->
+<div class="w3-container w3-padding-64 w3-blue w3-grayscale w3-xlarge" id="servicios">
+  <div class="w3-content">
+    <h1 class="w3-center w3-jumbo" style="margin-bottom:64px"><b>SERVICIOS</b></h1>
+    <div>
+      <h2><b>Aparcamiento</b></h2>
+      <p>Contamos con un amplio aparcamiento para que puedas dejar tu vehículo cómodamente mientras disfrutas de la película.</p>
+  </div>
+  <div>
+      <h2><b>Aseos</b></h2>
+      <p>Nuestro cine dispone de aseos modernos y limpios en varias ubicaciones dentro del recinto para tu comodidad.</p>
+  </div>
+  <div>
+      <h2><b>Venta de golosinas</b></h2>
+      <p>Disfruta de una gran variedad de golosinas, palomitas y bebidas para acompañar tu experiencia cinematográfica.</p>
+  </div>
+
+    <img src="img/golosinas.avif" style="width:100%" class="w3-margin-top w3-margin-bottom" alt="Golosinas">
+    <h1><b>Horarios</b></h1>
+
+    <div class="w3-row">
+      <div class="w3-col s6">
+        <p>Lunes & Martes <b>CERRADO</b></p>
+        <p>Miercoles 12:00 - 24:00</p>
+        <p>Jueves 12:00 - 24:00</p>
+      </div>
+      <div class="w3-col s6">
+        <p>Viernes 12:00 - 24:00</p>
+        <p>Sabado 12:00 - 24:00</p>
+        <p>Domingo 12:00 - 22:00</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Image of location/map -->
+<img src="img/ubicacion.webp" class="w3-image w3-greyscale" style="width:100%;" id="map">
+
+<!-- Taquilla -->
+<div class="w3-container w3-padding-64 w3-light-green w3-grayscale-min w3-xlarge">
+  <div class="w3-content">
+    <h1 class="w3-center w3-jumbo" style="margin-bottom:64px" id="taquilla"><br><b>TAQUILLA</b></h1>
+    <h2>Compre aqui sus entradas anticipadas</h2>
+    <form action="/action_page.php" target="_blank">
+
+      <label for="cine">Cine: </label>
+        <select class="w3-input w3-padding-16 w3-border" id="cine" name="cine" required>
+          <option value="">Selecciona un cine</option>
+            <option value="cine1">Madrid</option>
+            <option value="cine2">Barcelona</option>
+            <option value="cine3">Sevilla</option>
+        </select>
+      <br>
+      <label for="sala">Sala: </label>
+        <select class="w3-input w3-padding-16 w3-border" id="sala" name="sala" required>
+          <option value="">Selecciona una sala</option>
+          <option value="sala1">Sala 1</option>
+          <option value="sala2">Sala 2</option>
+          <option value="sala3">Sala 3</option>
+          <option value="sala3">Sala 4</option>
+          <option value="sala3">Sala 5</option>
+        </select>
+      <br>
+      <label for="hora">Selecciona la hora:</label>
+        <select class="w3-input w3-padding-16 w3-border" id="hora" name="hora" required>
+          <option value="">Selecciona una hora</option>
+          <option value="13:00">13:00</option>
+          <option value="13:30">13:30</option>
+          <option value="16:00">16:00</option>
+          <option value="16:30">16:30</option>
+          <option value="19:00">19:00</option>
+          <option value="19:30">19:30</option>
+          <option value="22:00">22:00</option>
+          <option value="22:30">22:30</option>
+        </select>
+      <br>
+      <label for="entradas">Número de entradas:</label>
+        <input class="w3-input w3-padding-16 w3-border" type="number" id="entradas" name="entradas" min="1" max="100" value="1" required>
+      <br>
+      <p><button class="w3-button w3-light-grey w3-block" type="submit"><b>COMPRAR</b></button></p>
+    </form>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="w3-center w3-green w3-padding-48 w3-xxlarge">
+  <p>Powered by <a href="https://aulacampus.com/" title="Aula Campus" target="_blank" class="w3-hover-text-lime"><b>Aula Campus</b></a></p>
+</footer>
+
+<script>
+// Tabbed Menu
+function openMenu(evt, menuName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("menu");
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+     tablinks[i].className = tablinks[i].className.replace(" w3-light-green", "");
+  }
+  document.getElementById(menuName).style.display = "block";
+  evt.currentTarget.firstElementChild.className += " w3-light-green";
+}
+document.getElementById("myLink").click();
+</script>
+
+</body>
+</html>
