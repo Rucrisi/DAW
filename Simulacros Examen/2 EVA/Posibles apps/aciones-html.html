@@ -1,0 +1,71 @@
+<!-- Botón que cambia el texto de un párrafo -->
+<button onclick="cambiarTexto()">Cambiar Texto</button>
+<p id="parrafo">Este es un párrafo.</p>
+<br>
+<script>
+function cambiarTexto() {
+    document.getElementById("parrafo").innerText = "¡El texto ha cambiado!";
+}
+</script>
+
+<!-- Botón que cambia la imagen -->
+<button onclick="cambiarImagen()">Cambiar Imagen</button>
+<img id="miImagen" src="imagen1.jpg" width="200">
+<br>
+
+<script>
+function cambiarImagen() {
+    let img = document.getElementById("miImagen");
+    img.src = img.src.includes("imagen1.jpg") ? "imagen2.jpg" : "imagen1.jpg";
+}
+</script>
+
+<!-- Botón que oculta y muestra un párrafo -->
+<button onclick="toggleParrafo()">Mostrar/Ocultar</button>
+<p id="parrafo1">Este es un párrafo visible.</p>
+<br>
+
+<script>
+function toggleParrafo() {
+    let p = document.getElementById("parrafo1");
+    p.style.display = (p.style.display === "none") ? "block" : "none";
+}
+</script>
+
+<!-- Cambiar el color del párrafo con un botón -->
+<button onclick="cambiarColor()">Cambiar Color</button>
+<p id="parrafo2">Este es un párrafo de prueba.</p>
+<br>
+
+<script>
+function cambiarColor() {
+    document.getElementById("parrafo2").style.color = "red";
+}
+</script>
+
+<!-- Hacer que la imagen gire al hacer clic -->
+<button onclick="girarImagen()">Girar Imagen</button>
+<img id="miImagen1" src="imagen3.jpg" width="200">
+<br>
+
+<script>
+let angulo = 0;
+function girarImagen() {
+    angulo += 90;
+    document.getElementById("miImagen1").style.transform = `rotate(${angulo}deg)`;
+}
+</script>
+
+<!-- Contador que aumenta con un botón -->
+<button onclick="incrementar()">Incrementar</button>
+<p id="contador">0</p>
+<br>
+
+<script>
+let contador = 0;
+function incrementar() {
+    contador++;
+    document.getElementById("contador").innerText = contador;
+}
+</script>
+

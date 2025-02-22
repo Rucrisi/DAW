@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Edad</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f7f7f7;
+            flex-direction: column;
+        }
+        .container {
+            width: 400px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        input, button {
+            width: 80%;
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Calculadora de Edad</h1>
+
+    <label for="dob">Fecha de Nacimiento:</label>
+    <input type="date" id="dob" />
+
+    <button onclick="calculateAge()">Calcular Edad</button>
+
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+    function calculateAge() {
+        const dob = document.getElementById('dob').value;
+        if (!dob) {
+            document.getElementById('result').textContent = 'Por favor, ingresa una fecha válida.';
+            return;
+        }
+
+        const birthDate = new Date(dob);
+        const today = new Date();
+
+        let age = today.getFullYear() - birthDate.getFullYear();
+        let month = today.getMonth() - birthDate.getMonth();
+        let day = today.getDate() - birthDate.getDate();
+
+        if (month < 0 || (month === 0 && day < 0)) {
+            age--;
+            month = (month + 12) % 12;
+            day = (day + 30) % 30;  // Aprox. días en un mes
+        }
+
+        document.getElementById('result').textContent = `Edad: ${age} años, ${month} meses y ${day} días.`;
+    }
+</script>
+
+</body>
+</html>

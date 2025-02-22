@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Unidades</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            flex-direction: column;
+        }
+        .container {
+            width: 400px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+
+        }
+        select, input {
+            width: 80%;
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 15px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Conversor de Unidades</h1>
+
+    <label for="category">Selecciona categoría:</label>
+    <select id="category" onchange="updateUnits()">
+        <option value="distance">Distancia</option>
+        <option value="weight">Peso</option>
+        <option value="temperature">Temperatura</option>
+        <option value="currency">Moneda</option>
+    </select>
+    <br>
+    <label for="unitFrom">De:</label>
+    <br>
+    <select id="unitFrom"></select>
+    <br>
+    <label for="unitTo">A:</label>
+    <br>
+    <select id="unitTo"></select>
+    <br>
+    <label for="value">Valor:</label>
+    <br>
+    <input type="number" id="value" placeholder="Introduce un valor">
+    <br>
+    <br>
+    <button onclick="convert()">Convertir</button>
+
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+    // Opciones de unidades para cada categoría
+    const units = {
+        distance: ['Kilómetros', 'Metros', 'Centímetros', 'Milímetros', 'Millas', 'Pies', 'Pulgadas'],
+        weight: ['Kilogramos', 'Gramos', 'Libras', 'Onzas'],
+        temperature: ['Celsius', 'Fahrenheit', 'Kelvin'],
+        currency: ['Dólar', 'Euro']
+    };
+
+    const conversionRates = {
+        currency: {
+            'Dólar': {
+                'Euro': 0.92,
+                'Dólar': 1
+            },
+            'Euro': {
+                'Dólar': 1.09,
+                'Euro': 1
+            }
+        },
+        distance: {
+            'Kilómetros': {
+                'Metros': 1000,
+                'Centímetros': 100000,
+                'Milímetros': 1000000,
+                'Millas': 0.621371,
+                'Pies': 3280.84,
+                'Pulgadas': 39370.1
+            },
+            'Metros': {
+                'Kilómetros': 0.001,
+                'Centímetros': 100,
+                'Milímetros': 1000,
+                'Millas': 0.000621371,
+                'Pies': 3.28084,
+                'Pulgadas': 39.3701
+            },
+            // Agregar más conversiones si es necesario...
+        },
+        weight: {
+            'Kilogramos': {
+                'Gramos': 1000,
+                'Libras': 2.20462,
+                'Onzas': 35.274
+            },
+            'Gramos': {
+                'Kilogramos': 0.001,
+                'Libras': 0.00220462,
+                'Onzas': 0.035274
+            },
+            'Libras': {
+                'Kilogramos': 0.453592,
+                'Gramos': 453.592,
+                'Onzas': 16
+            },
+            // Agregar más conversiones si es necesario...
+        },
+        temperature: {
+            'Celsius': {
+                'Fahrenheit': (value) => (value * 9/5) + 32,
+                'Kelvin': (value) => value + 273.15
+            },
+            'Fahrenheit': {
+                'Celsius': (value) => (value - 32) * 5/9,
+                'Kelvin': (value) => (value - 32) * 5/9 + 273.15
+            },
+            'Kelvin': {
+                'Celsius': (value) => value - 273.15,
+                'Fahrenheit': (value) => (value - 273.15) * 9/5 + 32
+            }
+        }
+    };
+
+    // Función para actualizar las unidades de conversión según la categoría seleccionada
+    function updateUnits() {
+        const category = document.getElementById('category').value;
+        const unitFromSelect = document.getElementById('unitFrom');
+        const unitToSelect = document.getElementById('unitTo');
+        const unitsList = units[category];
+
+        unitFromSelect.innerHTML = '';
+        unitToSelect.innerHTML = '';
+
+        unitsList.forEach(unit => {
+            const optionFrom = document.createElement('option');
+            optionFrom.value = unit;
+            optionFrom.textContent = unit;
+            unitFromSelect.appendChild(optionFrom);
+
+            const optionTo = document.createElement('option');
+            optionTo.value = unit;
+            optionTo.textContent = unit;
+            unitToSelect.appendChild(optionTo);
+        });
+    }
+
+    // Función para convertir las unidades
+    function convert() {
+        const category = document.getElementById('category').value;
+        const value = parseFloat(document.getElementById('value').value);
+        const unitFrom = document.getElementById('unitFrom').value;
+        const unitTo = document.getElementById('unitTo').value;
+        let result = 0;
+
+        if (!value || isNaN(value)) {
+            document.getElementById('result').textContent = 'Introduce un valor válido';
+            return;
+        }
+
+        if (category === 'currency') {
+            result = value * conversionRates.currency[unitFrom][unitTo];
+        } else if (category === 'distance') {
+            result = value * conversionRates.distance[unitFrom][unitTo];
+        } else if (category === 'weight') {
+            result = value * conversionRates.weight[unitFrom][unitTo];
+        } else if (category === 'temperature') {
+            result = conversionRates.temperature[unitFrom][unitTo](value);
+        }
+
+        document.getElementById('result').textContent = `${value} ${unitFrom} = ${result.toFixed(2)} ${unitTo}`;
+    }
+
+    // Inicializar unidades por defecto
+    updateUnits();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tres en Raya</title>
+    <style>
+        body { display: flex; justify-content: center; align-items: center; height: 100vh; flex-direction: column; font-family: Arial, sans-serif; }
+        .board { display: grid; grid-template-columns: repeat(3, 100px); grid-gap: 5px; }
+        .cell { width: 100px; height: 100px; display: flex; justify-content: center; align-items: center; font-size: 36px; border: 2px solid black; cursor: pointer; }
+        .cell.taken { cursor: not-allowed; }
+    </style>
+</head>
+<body>
+    <h1>Tres en Raya</h1>
+    <div class="board" id="board"></div>
+    <p id="status">Turno de: X</p>
+    <button onclick="resetGame()">Reiniciar</button>
+
+    <script>
+        const board = document.getElementById("board");
+        const status = document.getElementById("status");
+        let cells = Array(9).fill(null);
+        let turn = "X";
+
+        function createBoard() {
+            board.innerHTML = "";
+            cells.forEach((_, index) => {
+                const div = document.createElement("div");
+                div.classList.add("cell");
+                div.onclick = () => makeMove(index);
+                board.appendChild(div);
+            });
+        }
+
+        function makeMove(index) {
+            if (cells[index] || checkWinner()) return;
+            cells[index] = turn;
+            updateBoard();
+            if (checkWinner()) {
+                status.textContent = `¡${turn} gana!`;
+                return;
+            }
+            turn = turn === "X" ? "O" : "X";
+            status.textContent = `Turno de: ${turn}`;
+        }
+
+        function updateBoard() {
+            document.querySelectorAll(".cell").forEach((cell, index) => {
+                cell.textContent = cells[index];
+                if (cells[index]) cell.classList.add("taken");
+            });
+        }
+
+        function checkWinner() {
+            const winningPatterns = [
+                [0, 1, 2], [3, 4, 5], [6, 7, 8],
+                [0, 3, 6], [1, 4, 7], [2, 5, 8],
+                [0, 4, 8], [2, 4, 6]
+            ];
+            return winningPatterns.some(pattern =>
+                pattern.every(index => cells[index] === turn)
+            );
+        }
+
+        function resetGame() {
+            cells.fill(null);
+            turn = "X";
+            status.textContent = "Turno de: X";
+            createBoard();
+        }
+
+        createBoard();
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fondo</title>
+  <style>
+    body {
+      background-color: #007bff; /* Blue */
+    }
+  </style>
+</head>
+<body>
+
+  <button onclick="changeColor()">Cambiar Fondo</button>
+
+  <script>
+    function changeColor() {
+      var colors = ["#ff0000", "#ffff00", "#00ffff", "#800080"]; // Lista de colores
+      var randomIndex = Math.floor(Math.random() * colors.length); // Obtener un índice aleatorio entre 0 y la longitud de la lista
+      document.body.style.backgroundColor = colors[randomIndex]; // Cambiar el color del fondo a uno de los colores en la lista
+    }
+  </script>
+</body>
+</html>

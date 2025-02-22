@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic-Tac-Toe Infinito</title>
+    <style>
+        body { text-align: center; font-family: Arial, sans-serif; }
+        .container { display: flex; justify-content: center; align-items: center; flex-direction: column; height: 100vh; }
+        .board { display: grid; grid-template-columns: repeat(auto-fit, 50px); gap: 5px; margin: 20px auto; }
+        .cell { width: 50px; height: 50px; border: 1px solid black; display: flex; justify-content: center; align-items: center; font-size: 24px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Tic-Tac-Toe Infinito</h1>
+        <div class="board" id="board"></div>
+        <p id="status">Turno de: X</p>
+    </div>
+    <script>
+        const board = document.getElementById("board");
+        const status = document.getElementById("status");
+        const size = 3;
+        let grid = Array(size).fill(null).map(() => Array(size).fill(""));
+        let turn = "X";
+
+        function createBoard() {
+            board.innerHTML = "";
+            board.style.gridTemplateColumns = `repeat(${grid.length}, 50px)`;
+            grid.forEach((row, r) => {
+                row.forEach((cell, c) => {
+                    const div = document.createElement("div");
+                    div.classList.add("cell");
+                    div.textContent = cell;
+                    div.onclick = () => makeMove(r, c);
+                    board.appendChild(div);
+                });
+            });
+        }
+
+        function makeMove(r, c) {
+            if (grid[r][c] !== "") return;
+            grid[r][c] = turn;
+            if (checkWin(r, c)) {
+                status.textContent = `¡${turn} gana!`;
+                board.onclick = null;
+                return;
+            }
+            turn = turn === "X" ? "O" : "X";
+            status.textContent = `Turno de: ${turn}`;
+            expandBoardIfNeeded();
+            createBoard();
+        }
+
+        function expandBoardIfNeeded() {
+            if (grid.some(row => row.includes(""))) return;
+            grid.forEach(row => row.push(""));
+            grid.push(Array(grid[0].length).fill(""));
+        }
+
+        function checkWin(r, c) {
+            const directions = [[1, 0], [0, 1], [1, 1], [1, -1]];
+            return directions.some(([dr, dc]) => {
+                let count = 1;
+                for (let d of [-1, 1]) {
+                    let nr = r + dr * d, nc = c + dc * d;
+                    while (grid[nr] && grid[nr][nc] === turn) {
+                        count++;
+                        nr += dr * d;
+                        nc += dc * d;
+                    }
+                }
+                return count >= 3;
+            });
+        }
+
+        createBoard();
+    </script>
+</body>
+</html>

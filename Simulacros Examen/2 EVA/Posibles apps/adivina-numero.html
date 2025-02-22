@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego Adivina el Número</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .game-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+        input[type="number"] {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+            width: 60px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-align: center;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .reset-button {
+            background-color: #dc3545;
+            margin-top: 10px;
+        }
+        .reset-button:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+
+<div class="game-container">
+    <h1>Adivina el Número</h1>
+    <p>He elegido un número entre 1 y 100. ¡Intenta adivinarlo!</p>
+    <input type="number" id="guess" placeholder="" min="1" max="100">
+    <br>
+    <button onclick="checkGuess()">Adivinar</button>
+    <button class="reset-button" onclick="resetGame()">Resetear</button>
+    <div id="result" class="result"></div>
+</div>
+
+<script>
+    let randomNumber;
+    let attempts;
+
+    function resetGame() {
+        // Generar un nuevo número aleatorio y reiniciar los intentos
+        randomNumber = Math.floor(Math.random() * 100) + 1;
+        attempts = 0;
+
+        // Limpiar el campo de texto y el resultado
+        document.getElementById('guess').value = '';
+        document.getElementById('result').textContent = '';
+    }
+
+    function checkGuess() {
+        const userGuess = parseInt(document.getElementById('guess').value);
+        const resultDiv = document.getElementById('result');
+
+        // Verificar si el usuario ha introducido un número válido
+        if (isNaN(userGuess) || userGuess < 1 || userGuess > 100) {
+            resultDiv.textContent = "Por favor, introduce un número entre 1 y 100.";
+            resultDiv.style.color = "red";
+            return;
+        }
+
+        attempts++; // Incrementar los intentos
+
+        // Comprobar si el número adivinado es correcto
+        if (userGuess === randomNumber) {
+            resultDiv.textContent = `¡Felicidades! Has adivinado el número ${randomNumber} en ${attempts} intentos.`;
+            resultDiv.style.color = "green";
+        } else if (userGuess < randomNumber) {
+            resultDiv.textContent = "El número es mayor. ¡Sigue intentando!";
+            resultDiv.style.color = "orange";
+        } else {
+            resultDiv.textContent = "El número es menor. ¡Sigue intentando!";
+            resultDiv.style.color = "orange";
+        }
+    }
+
+    // Inicializar el juego cuando la página carga
+    window.onload = resetGame;
+</script>
+
+</body>
+</html>

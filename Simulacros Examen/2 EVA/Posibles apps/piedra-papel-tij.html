@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Piedra, Papel o Tijeras</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            flex-direction: column;
+        }
+        .game-container {
+            text-align: center;
+        }
+        .choice-buttons button {
+            padding: 20px;
+            font-size: 20px;
+            margin: 10px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        .choice-buttons button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="game-container">
+    <h1>Juego de Piedra, Papel o Tijeras</h1>
+    <div class="choice-buttons">
+        <button onclick="playGame('piedra')">Piedra</button>
+        <button onclick="playGame('papel')">Papel</button>
+        <button onclick="playGame('tijeras')">Tijeras</button>
+    </div>
+
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+    function playGame(userChoice) {
+        const choices = ['piedra', 'papel', 'tijeras'];
+        const computerChoice = choices[Math.floor(Math.random() * 3)];
+
+        let result = '';
+        if (userChoice === computerChoice) {
+            result = '¡Es un empate!';
+        } else if (
+            (userChoice === 'piedra' && computerChoice === 'tijeras') ||
+            (userChoice === 'papel' && computerChoice === 'piedra') ||
+            (userChoice === 'tijeras' && computerChoice === 'papel')
+        ) {
+            result = `¡Ganaste! La computadora eligió ${computerChoice}.`;
+        } else {
+            result = `¡Perdiste! La computadora eligió ${computerChoice}.`;
+        }
+
+        document.getElementById('result').textContent = result;
+    }
+</script>
+
+</body>
+</html>

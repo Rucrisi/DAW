@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <style>
+        body { display: flex; justify-content: center; align-items: center; height: 100vh; flex-direction: column; font-family: Arial, sans-serif; }
+        .calculator { display: grid; grid-template-columns: repeat(4, 60px); gap: 10px; background: #333; padding: 20px; border-radius: 10px; }
+        .display { grid-column: span 4; height: 50px; text-align: right; font-size: 40px; padding: 10px; background: #222; color: white; border-radius: 5px; }
+        button { width: 60px; height: 60px; font-size: 20px; cursor: pointer; border: none; border-radius: 5px; }
+        button.operator { background: orange; color: white; }
+        button.equal { background: green; color: white; }
+        button.clear { background: red; color: white; width: 270px; align-items: center;}
+    </style>
+</head>
+<body>
+    <h1>Calculadora</h1>
+    <div class="calculator">
+        <div class="display" id="display">0</div>
+
+
+        <button onclick="appendToDisplay('7')">7</button>
+        <button onclick="appendToDisplay('8')">8</button>
+        <button onclick="appendToDisplay('9')">9</button>
+        <button class="operator" onclick="appendToDisplay('/')">/</button>
+
+        <button onclick="appendToDisplay('4')">4</button>
+        <button onclick="appendToDisplay('5')">5</button>
+        <button onclick="appendToDisplay('6')">6</button>
+        <button class="operator" onclick="appendToDisplay('*')">*</button>
+
+        <button onclick="appendToDisplay('1')">1</button>
+        <button onclick="appendToDisplay('2')">2</button>
+        <button onclick="appendToDisplay('3')">3</button>
+        <button class="operator" onclick="appendToDisplay('-')">-</button>
+
+
+        <button onclick="appendToDisplay('0')">0</button>
+        <button onclick="appendToDisplay('.')">.</button>
+        <button class="equal" onclick="calculateResult()">=</button>
+        <button class="operator" onclick="appendToDisplay('+')">+</button>
+
+        <button class="clear" onclick="clearDisplay()">C</button>
+    </div>
+
+    <script>
+        let display = document.getElementById("display");
+        function appendToDisplay(value) {
+            if (display.textContent === "0") {
+                display.textContent = value;
+            } else {
+                display.textContent += value;
+            }
+        }
+        function clearDisplay() {
+            display.textContent = "0";
+        }
+        function calculateResult() {
+            try {
+                let numero = parseFloat(display.textContent);
+                if (numero % 1 !== 0) {  // Verifica si el número tiene decimales
+                    display.textContent = eval(display.textContent).toFixed(3);
+                } else {
+                    display.textContent = eval(display.textContent);
+                }
+            } catch {
+                display.textContent = "Error";
+            }
+        }
+    </script>
+</body>
+</html>

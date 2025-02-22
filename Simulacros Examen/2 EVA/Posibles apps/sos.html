@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOS Game</title>
+    <style>
+        body { text-align: center; font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; flex-direction: column; }
+        .board-container { display: flex; justify-content: center; align-items: center; }
+        .board { display: grid; grid-template-columns: repeat(5, 50px); gap: 5px; margin: 20px auto; }
+        .cell { width: 50px; height: 50px; border: 1px solid black; display: flex; justify-content: center; align-items: center; font-size: 24px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Juego SOS</h1>
+    <div class="board-container">
+        <div class="board" id="board"></div>
+    </div>
+    <p id="status">Turno de: S</p>
+    <script>
+        const board = document.getElementById("board");
+        const status = document.getElementById("status");
+        const size = 5;
+        let grid = Array(size).fill(null).map(() => Array(size).fill(""));
+        let turn = "S";
+
+        function createBoard() {
+            board.innerHTML = "";
+            board.style.gridTemplateColumns = `repeat(${size}, 50px)`;
+            grid.forEach((row, r) => {
+                row.forEach((cell, c) => {
+                    const div = document.createElement("div");
+                    div.classList.add("cell");
+                    div.textContent = cell;
+                    div.onclick = () => makeMove(r, c);
+                    board.appendChild(div);
+                });
+            });
+        }
+
+        function makeMove(r, c) {
+            if (grid[r][c] !== "") return;
+            grid[r][c] = turn;
+            if (checkWin(r, c)) {
+                status.textContent = `¡${turn} gana!`;
+                board.onclick = null;
+                return;
+            }
+            turn = turn === "S" ? "O" : "S";
+            status.textContent = `Turno de: ${turn}`;
+            createBoard();
+        }
+
+        function checkWin(r, c) {
+            const patterns = [
+                [[0, -1], [0, 1]],
+                [[-1, 0], [1, 0]],
+                [[-1, -1], [1, 1]],
+                [[-1, 1], [1, -1]]
+            ];
+            return patterns.some(pattern => {
+                const [dir1, dir2] = pattern;
+                const char1 = getCell(r + dir1[0], c + dir1[1]);
+                const char2 = getCell(r + dir2[0], c + dir2[1]);
+                return char1 === "O" && char2 === "S";
+            });
+        }
+
+        function getCell(r, c) {
+            return grid[r] && grid[r][c] ? grid[r][c] : null;
+        }
+
+        createBoard();
+    </script>
+</body>
+</html>
