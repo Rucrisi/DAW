@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen DAW</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Mi Aplicación Web</h1>
+        <nav>
+            <a href="#">Inicio</a>
+            <a href="#">Servicios</a>
+            <a href="#">Contacto</a>
+        </nav>
+    </header>
+
+    <section>
+        <img src="imagen.jpg" alt="Imagen de ejemplo">
+        <p onmouseover="mostrarAlerta()">Alerta al pasar el raton sobre este el texto.</p>
+    </section>
+
+    <section>
+        <h1>Formulario de Usuario</h1>
+        <form action="../server/usuarios.php" method="POST">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required><br><br>
+
+            <label for="correo">Correo:</label>
+            <input type="email" id="correo" name="correo" required><br><br>
+
+            <input type="submit" value="Enviar">
+        </form>
+        <br>
+
+        <!-- Botón para verificar usuarios -->
+        <button onclick="verificarUsuarios()">Verificar usuarios</button>
+        <p id="respuesta1"></p>
+
+        <button onclick="borrarUsuarios()">Borrar Usuarios</button>
+        <p id="respuesta2"></p>
+
+        <button onclick="saludo()">Obtener saludo</button>
+        <p id="respuesta"></p>
+    </section>
+
+    <section>
+        <button onclick="cambiarColorFondo()">Cambiar color de fondo</button>
+    </section>
+
+    <footer>
+        <p>Contacto: ruben.crispin@gmail.com</p>
+    </footer>
+
+    <script>
+        function cambiarColorFondo() {
+            const colores = ["#FF5733", "#33FF57", "#3357FF", "#F3FF33", "#FF33A1"];
+            const colorAleatorio = colores[Math.floor(Math.random() * colores.length)];
+            document.body.style.backgroundColor = colorAleatorio;
+        }
+
+        function mostrarAlerta() {
+            alert("¡Has pasado el ratón por encima del texto!");
+        }
+
+        function verificarUsuarios() {
+            fetch('../server/verificar_sesion.php')
+                .then(response => response.json()) // Convertir la respuesta a JSON
+                .then(data => {
+                    let respuesta = document.getElementById('respuesta1');
+
+                    if (data.status === "success") {
+                        let usuarios = data.usuarios.map((nombre, index) => {
+                            return `${nombre} (${data.correos[index]})`; // Mostrar nombre y correo
+                        }).join(", ");
+
+                        respuesta.innerText = "Usuarios registrados: " + usuarios;
+                    } else {
+                        respuesta.innerText = data.message; // Mostrar mensaje de error si no hay usuarios
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('respuesta1').innerText = "Error al verificar usuario.";
+                });
+        }
+
+        function saludo() {
+            fetch('../server/saludo.php')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('respuesta').innerText = data.mensaje;
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function borrarUsuarios() {
+            fetch('../server/borrar_usuarios.php')
+                .then(response => response.json()) // Convertir la respuesta a JSON
+                .then(data => {
+                    let respuesta = document.getElementById('respuesta2');
+
+                    if (data.status === "success") {
+                        respuesta.innerText = data.message;
+                    } else {
+                        respuesta.innerText = data.message; // Mostrar mensaje de error si no hay usuarios
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('respuesta2').innerText = "Error al verificar usuario.";
+                });
+        }
+    </script>
+</body>
+</html>

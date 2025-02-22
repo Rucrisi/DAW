@@ -1,0 +1,48 @@
+body {
+    font-family: system-ui;
+    text-align: center;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+
+}
+header {
+    background: #333;
+    color: white;
+    padding: 15px;
+}
+nav a {
+    margin: 10px;
+    color: white;
+    text-decoration: none;
+}
+section {
+    margin: 20px auto; /* Auto en los lados para centrar */
+    padding: 20px;
+    background: white;
+    max-width: 800px; /* Limita el ancho */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+footer {
+    background: #333;
+    color: white;
+    padding: 10px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+img{
+    width: 500px;
+    height: 250px;
+}
+
+.box {
+    width: 60px; /* Ancho de la caja de texto */
+    height: 40px; /* Altura de la caja de texto */
+    padding: 5px; /* Espaciado interno para mejorar apariencia */
+    font-size: 16px; /* Tamaño del texto dentro del input */
+    box-sizing: border-box; /* Asegura que el padding y border no aumenten el tamaño total */
+}
